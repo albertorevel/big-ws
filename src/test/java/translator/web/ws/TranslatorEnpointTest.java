@@ -40,13 +40,13 @@ public class TranslatorEnpointTest {
 	@Test
 	public void testSendAndReceive() {
 		GetTranslationRequest request = new GetTranslationRequest();
-		request.setLangFrom("fr");
+		request.setLangFrom("en");
 		request.setLangTo("es");
-		request.setText("C'est le deuxième essai du service de traduction");
+		request.setText("I want to solve all the problems in order to finish the work");
 		Object response = new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:"
 				+ port + "/ws", request);
 		assertNotNull(response);
 		assertThat(response, instanceOf(GetTranslationResponse.class));
-		assertThat(((GetTranslationResponse) response).getTranslation(), is("Esta es la segunda prueba del servicio de traducción"));
+		assertThat(((GetTranslationResponse) response).getTranslation(), is("Quiero resolver todos los problemas con el fin de terminar el trabajo"));
 	}	
 }
